@@ -5,7 +5,7 @@ const app = express();
 require('dotenv').config();
 const http = require('http');
 const morgan = require('morgan');
-// const cors = require('cors');
+const cors = require('cors');
 
 // DB Setup
 const connectDB = require('./config/db');
@@ -14,6 +14,20 @@ connectDB();
 // App Setup
 app.use(morgan('combined'));
 app.use(express.json({ extended: false }));
+
+// App - Cors middleware
+// let whitelist = ['http://localhost'];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// };
+
+app.use(cors());
 
 // Define Routes
 app.get('/', (req, res) => res.send('API Running'));

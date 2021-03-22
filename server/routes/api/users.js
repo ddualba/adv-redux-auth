@@ -14,6 +14,6 @@ router.get('/', requireAuth, async (req, res) => {
 
 router.post('/signin', requireSignin, Authentication.signin);
 
-router.post('/', Authentication.signup);
+router.post('/signup', Authentication.signup);
 
 module.exports = router;
